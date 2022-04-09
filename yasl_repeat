@@ -1,35 +1,27 @@
 #!./yasl_linux
 
 {
-	"No enough args\n" :0
+	"Not enough arguments\n" :0
 	0: print
-	exit
-}	no_enough_arg
+	1 exit
+} ac_err
 
 {
-	"Must be > to 0\n" :0
+	"Strictly positive integer needed\n" :0
 	0: print
-	exit
-}	pos
-
-{
-	"Must be integer\n" :0
-	0: print
-	exit
-}	err_int
-
-0: 3 < ? no_enough_arg
+	1 exit
+} av_err
 
 {
 	0: = :1
 	1: print
-}	aff_once
+} aff_once
 
 {
 	2: = :1
 	1 :2
 	2: + :2
-}	copy_and_increment
+} copy_and_increment
 
 {
 	2: copy_and_increment
@@ -38,22 +30,25 @@
 	1: print
 	! :0
 	# :0
-}	loop
+} loop
 
 {
 	0 :0
 	0: - :2
 	2: = :2
 	0 :2
-	2: == ? err_int
-}	check_int
+	2: == ? av_err
+} check_int
+
+// Check the `ac` value
+0: 3 < ? ac_err
 
 // Skip `./yasl_aff_param`
-!
+0: !
 
-0: check_int
+check_int
 2: = :2
 
-# :0
+0: # :0
 0 :2
-2: <= ? pos : (0: @loop)
+2: <= ? av_err : (0: @loop)
