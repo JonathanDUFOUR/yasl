@@ -6,6 +6,18 @@
 	exit
 }	no_enough_arg
 
+{
+	"Must be > to 0\n" :0
+	0: print
+	exit
+}	pos
+
+{
+	"Must be integer\n" :0
+	0: print
+	exit
+}	err_int
+
 0: 3 < ? no_enough_arg
 
 {
@@ -28,11 +40,20 @@
 	# :0
 }	loop
 
+{
+	0 :0
+	0: - :2
+	2: = :2
+	0 :2
+	2: == ? err_int
+}	check_int
+
 // Skip `./yasl_aff_param`
 !
 
-// Loop on parameters
-0: eval :2
+0: check_int
+2: = :2
 
 # :0
-0: @loop
+0 :2
+2: <= ? pos : (0: @loop)

@@ -1,29 +1,40 @@
 #!./yasl_linux
 
 {
+	"No enough args\n" :0
+	0: print
+	exit
+}	no_enough_arg
+
+0: 3 < ? no_enough_arg
+
+{
 	0: = :1
 	1: print
-}	multipy
+}	aff_once
 
 {
 	2: = :1
-}	inc_and_copy
+	1 :2
+	2: + :2
+}	copy_and_increment
 
 {
-	2: inc_and_copy
-	1: #multipy
+	2: copy_and_increment
+	1: #aff_once
 	"\n" :1
 	1: print
 	! :0
 	# :0
 }	loop
 
-// Skip `ac` and `./yasl_aff_param`
-2
-#!
+// Skip `./yasl_aff_param`
+!
 
 // Loop on parameters
 0: eval :2
 
 # :0
 0: @loop
+
+$0:@loop : 
