@@ -1,15 +1,16 @@
 #!./yasl_linux
 
-
 {
 	0: print
 	"\n" :0
 	0: print
+	0: #
 } aff_once
 
-// Check if `ac` is greater than 1
-0: 1 > ? (
-	0: !
-	0: #
-	0: #aff_once
-)
+// Skip `ac` and `./yasl_aff_param`
+0: !
+0: !
+
+// Loop on parameters
+0: #
+0: @aff_once
