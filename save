@@ -1,26 +1,29 @@
 #!./yasl_linux
 
 {
-	0: print
-	"\n" :0
-	0: print
-	0: #
-} aff_once
-
-{
-	2:2
 	0: = :1
-	2: -1 :2
-
-
+	1: print
 }	multipy
 
+{
+	2: = :1
+}	inc_and_copy
+
+{
+	2: inc_and_copy
+	1: #multipy
+	"\n" :1
+	1: print
+	! :0
+	# :0
+}	loop
+
 // Skip `ac` and `./yasl_aff_param`
-0: !
-0: !
+2
+#!
 
 // Loop on parameters
 0: eval :2
-0: #
-2: multipy
-0: @aff_once
+
+# :0
+0: @loop

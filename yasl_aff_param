@@ -8,8 +8,8 @@
 } aff_once
 
 // Skip `ac` and `./yasl_aff_param`
-0: !
-0: !
+2
+#!
 
 // Loop on parameters
 0: #
