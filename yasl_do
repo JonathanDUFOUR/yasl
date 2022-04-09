@@ -1,0 +1,119 @@
+#!./yasl_linux
+
+{
+	0: + :0
+	0: print
+} addition
+
+{
+	0: - :0
+	0: print
+} substraction
+
+{
+	0: * :0
+	0: print
+} multiplication
+
+{
+	0: / :0
+	0: print
+} division
+
+{
+	0: % :0
+	0: print
+} modulo
+
+{
+	0: < :0
+	0: print
+} lowerCheck
+
+{
+	0: > :0
+	0: print
+} greaterCheck
+
+{
+	0: <= :0
+	0: print
+} lowerEqualCheck
+
+{
+	0: >= :0
+	0: print
+} greaterEqualCheck
+
+{
+	0: == :0
+	0: print
+} equalCheck
+
+{
+	0: != :0
+	0: print
+} diffCheck
+
+// Skip `ac` and `./yasl_do`
+0: !
+0: !
+
+// Isolate the operator on Stack:1
+0: = :2
+0: !
+0: = :1
+0: !
+2: = :0
+2: !
+
+// Swap operands
+0: = :1
+0: !
+0: = :2
+0: !
+1: = :0
+1: !
+2: = :0
+2: !
+
+// Transform operands from strings to numbers
+0: eval :0
+
+// Check which operator it is, and do the appropriate operation
+1: = :1
+"+" :1
+1: == ? addition
+1: = :1
+"-" :1
+1: == ? substraction
+1: = :1
+"*" :1
+1: == ? multiplication
+1: = :1
+"/" :1
+1: == ? division
+1: = :1
+"%" :1
+1: == ? modulo
+1: = :1
+"<" :1
+1: == ? lowerCheck
+1: = :1
+">" :1
+1: == ? greaterCheck
+1: = :1
+"<=" :1
+1: == ? lowerEqualCheck
+1: = :1
+">=" :1
+1: == ? greaterEqualCheck
+1: = :1
+"==" :1
+1: == ? equalCheck
+1: = :1
+"!=" :1
+1: == ? diffCheck
+
+"\n" :0
+0: print

@@ -1,12 +1,15 @@
 #!./yasl_linux
 
-0: 1>? (
+
+{
+	0: print
+	"\n" :0
+	0: print
+} aff_once
+
+// Check if `ac` is greater than 1
+0: 1 > ? (
 	0: !
 	0: #
-	0: #(
-		0: print
-		"\n" :0
-		0: print
-	)
+	0: #aff_once
 )
-
