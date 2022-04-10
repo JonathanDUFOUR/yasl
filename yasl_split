@@ -1,60 +1,89 @@
 #!./yasl_linux
 
 {
-	"Args error\n" :0
+	"Wrong argument count\n" :0
 	0: print
-	exit
-}	arg_err
+	1 exit
+} ac_err
 
 {
-	"This is not a separator\n" :0
+	"Invalid separator\n" :0
 	0: print
-	exit
-}	no_sep
+	1 exit
+} separator_err
 
 {
-	"There is no string\n" :0
+	"Invalid string\n" :0
 	0: print
 	#
-	exit
-}	no_string
+	1 exit
+} string_err
 
 {
-	0: = :0
-	1: = :0
-	0: == ? ("\n" :2) : (0: = :2)
-	0: !
 	0: # :0
-}	ft_split
+	0: @(
+		0: = :0
+		1: = :0
+		0: == ? (
+			0: !
+			0: # :0
+		) : (
+			0 :0
+		)
+	)
+} skip_separator
 
 {
+	0: # :0
+	0: @(
+		0: = :0
+		1: = :0
+		0: != ? (
+			0: = :2
+			0: !
+			0: # :0
+		) : (
+			0 :0
+		)
+	)
+} copy_substring
+
+{
+	"\n" :2
+	copy_substring
+	skip_separator
+	0: # :0
+	} ft_split
+	
+// Check `ac` value
+3 :0
+0: != ? ac_err
+
+// Skip `./yasl_split`
+0: !
+
+// Transfer `separator` on Stack:1
+0: = :1
+0: !
+
+// Check `separator` value
+1: ][ :1
+1 :1
+1: != ? separator_err
+
+// Check `string` value
+0: ][ :0
+0 :0
+0: == ? string_err
+
+// Foreach character in string, check if it is a separator
+skip_separator
+0: # :0
+0: @ft_split
+
+// Print the final result
+2: # :2
+2: @(
 	2: print
 	2: # :2
-}	print_res
-
-{
-	1: ][ :1
-
-	1 :1
-	1: != ? no_sep
-	0: ][ :0
-	0: = :0
-	0 :0
-	0: == ? no_string
-
-	@ft_split
-	1 :2
-	2: @print_res
-	"\n" :2
-	2: print
-}	ft_exec
-
-{
-	!
-	0: = :1
-	!
-	ft_exec
-}	setup
-
-3 :0
-0: != ? arg_err : (0: setup)
+)
