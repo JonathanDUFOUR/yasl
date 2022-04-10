@@ -60,5 +60,5 @@
 	ft_exec
 }	convert
 
-0: 2
+2 :0
 0: != ? arg_err : (! 0: convert)

@@ -1,0 +1,24 @@
+#!./yasl_linux
+
+{
+	"Args error\n" :0
+	0: print
+	exit
+}	arg_err
+
+{
+
+}	ft_split
+
+{
+	ft_split
+}	ft_exec
+
+{
+	0 :0
+	0: - :2
+	ft_exec
+}	convert
+
+3 :0
+0: != ? arg_err : (! 0: convert)
