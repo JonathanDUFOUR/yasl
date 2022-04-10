@@ -41,7 +41,8 @@
 } check_int
 
 // Check the `ac` value
-0: 3 < ? ac_err
+3 :0
+0: < ? ac_err
 
 // Skip `./yasl_aff_param`
 0: !
