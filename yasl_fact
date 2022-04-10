@@ -60,6 +60,7 @@
 //  Stack:1 -> Store the current value
 "\n" :1
 1 :1
+
 recursive_fact
 1: print
 1: print
