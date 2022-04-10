@@ -7,18 +7,43 @@
 }	arg_err
 
 {
+	"This is not a charset\n" :0
+	0: print
+	exit
+}	no_charset
 
+{
+	1: = :1
+	0: = :1
+	1: == ? ("\n" :1)
+//	1: print
+
+}	dup_check
+
+{
+	0: print
+	// "\n"
+//	dup_check
+	0: print
+	0: # :0
 }	ft_split
 
 {
-	ft_split
+	1: ][ :1
+
+	1 :1
+	1: > ? no_charset
+	0: ][ :0
+
+	@ft_split
 }	ft_exec
 
 {
-	0 :0
-	0: - :2
+	!
+	0: = :1
+	!
 	ft_exec
 }	convert
 
 3 :0
-0: != ? arg_err : (! 0: convert)
+0: != ? arg_err : (0: convert)
